@@ -74,6 +74,7 @@ function buildCharts(sample) {
     var sample_values=firstSample.sample_values;
     console.log(sampleOtuId);
     console.log(sample_values);
+    console.log(sampleOtuLabel);
 
 
     // 7. Create the yticks for the bar chart.
@@ -81,7 +82,7 @@ function buildCharts(sample) {
     //  so the otu_ids with the most bacteria are last. 
     //values.sort((a,b) => b-a).slice(0,5);
     var yticks =  sampleOtuId.slice(0,10).map(x=>"OTU" + x).reverse();
-    console.log(yticks);
+    //console.log(yticks);
     
 
     // 8. Create the trace for the bar chart. 
@@ -91,7 +92,7 @@ function buildCharts(sample) {
       y:yticks,
       type:"bar",
       orientation :'h',
-      text :sampleOtuLabel.slice(0,10)
+      text :sampleOtuLabel.slice(0,10).reverse()
   };
 
     var barData = [trace];
@@ -104,6 +105,39 @@ function buildCharts(sample) {
     // 10. Use Plotly to plot the data with the layout. 
     //PANEL.append("h6").text("hello");
     Plotly.newPlot("bar",barData,barLayout);
+
+
+    // 1. Create the trace for the bubble chart.
+    
+    var trace ={
+      x:sampleOtuId,
+      y:sample_values,
+      mode:'markers',
+      marker :{
+        size:sample_values,
+        color:sampleOtuId,
+        colorscale:'Earth'
+              },
+      text :sampleOtuLabel
+    }
+    var bubbleData = [trace];
+
+    // 2. Create the layout for the bubble chart.
+    var bubbleLayout = {
+      title:"Bacteria Cultures Per Sample",
+      xaxis: {title: "OTU ID"},
+      margin: {
+        l: 100,
+        r: 100,
+        b: 50,
+        t: 70,
+       },
+      hovermode:'sampleOtuLabel'
+      
+    };
+
+    // 3. Use Plotly to plot the data with the layout.
+    Plotly.newPlot("bubble",bubbleData,bubbleLayout); 
     
   });
 }
