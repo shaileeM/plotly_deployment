@@ -5,6 +5,7 @@ function buildCharts(sample) {
     console.log(data);
 
     // Create a variable that holds the samples array. 
+    
 
     // Create a variable that filters the samples for the object with the desired sample number.
 

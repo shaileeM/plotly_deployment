@@ -17,6 +17,11 @@ function init() {
     var firstSample = sampleNames[0];
     buildCharts(firstSample);
     buildMetadata(firstSample);
+
+    
+  })
+  .catch(function(error){
+      console.log("error");
   });
 }
 
