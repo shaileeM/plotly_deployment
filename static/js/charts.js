@@ -19,10 +19,8 @@ function init() {
     buildMetadata(firstSample);
 
     
-  })
-  .catch(function(error){
-      console.log("error");
   });
+  
 }
 
 // Initialize the dashboard
